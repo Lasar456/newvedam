@@ -676,51 +676,41 @@
         <span class="close-button" id="closeModalBtn">&times;</span>
         <h2>Book Appointment</h2>
 
-        <!-- Updated Form using submit-form.com -->
         <form
           class="vertical-form"
           action="https://submit-form.com/Ise0Botla"
           method="POST"
         >
           <!-- Full Name -->
-          <label for="full-name">Full Name</label>
-          <input id="full-name" name="full-name" type="text" required />
-
-          <!-- Phone Number -->
-          <label for="phone">Phone Number</label>
-          <input id="phone" name="phone" type="tel" required />
-
-          <!--Date-->
-          <label for="date">Appointment Date</label>
           <input
-            id="date"
-            name="date"
+            id="full-name"
+            name="full-name"
             type="text"
-            placeholder="mm/dd/yyyy"
-            pattern="\d{2}/\d{2}/\d{4}"
+            placeholder="Full Name"
             required
-            oninput="formatDate(this)"
           />
 
-          <script>
-            function formatDate(input) {
-              // Auto-format the date while typing
-              let value = input.value.replace(/[^0-9]/g, ""); // Remove non-numeric chars
-              if (value.length > 4) {
-                input.value = `${value.slice(0, 2)}/${value.slice(
-                  2,
-                  4
-                )}/${value.slice(4, 8)}`;
-              } else if (value.length > 2) {
-                input.value = `${value.slice(0, 2)}/${value.slice(2)}`;
-              }
-            }
-          </script>
+          <!-- Phone Number -->
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="Phone Number"
+            required
+          />
+
+          <!-- Appointment Date -->
+          <input
+            id="appointment-date"
+            name="appointment-date"
+            type="date"
+            placeholder="Appointment Date"
+            required
+          />
 
           <!-- Preferred Time -->
-          <label for="preferred-time">Preferred Time</label>
           <select id="preferred-time" name="preferred-time" required>
-            <option value="">Select Time</option>
+            <option value="" disabled selected>Select Time</option>
             <option value="9:00 AM">9:00 AM</option>
             <option value="11:00 AM">11:00 AM</option>
             <option value="2:00 PM">2:00 PM</option>
@@ -786,19 +776,8 @@
         // Close the modal
         bookingModal.style.display = "none";
       });
-      function formatDate(input) {
-        // Auto-format the date while typing
-        let value = input.value.replace(/[^0-9]/g, ""); // Remove non-numeric chars
-        if (value.length > 4) {
-          input.value = `${value.slice(0, 2)}/${value.slice(
-            2,
-            4
-          )}/${value.slice(4, 8)}`;
-        } else if (value.length > 2) {
-          input.value = `${value.slice(0, 2)}/${value.slice(2)}`;
-        }
-      }
     </script>
   </body>
 </html>
+
 
