@@ -690,7 +690,7 @@
           <label for="phone">Phone Number</label>
           <input id="phone" name="phone" type="tel" required />
 
-          <!-- Appointment Date -->
+          <!--Date-->
           <label for="date">Appointment Date</label>
           <input
             id="date"
@@ -698,9 +698,24 @@
             type="text"
             placeholder="mm/dd/yyyy"
             pattern="\d{2}/\d{2}/\d{4}"
-            inputmode="none"
             required
+            oninput="formatDate(this)"
           />
+
+          <script>
+            function formatDate(input) {
+              // Auto-format the date while typing
+              let value = input.value.replace(/[^0-9]/g, ""); // Remove non-numeric chars
+              if (value.length > 4) {
+                input.value = `${value.slice(0, 2)}/${value.slice(
+                  2,
+                  4
+                )}/${value.slice(4, 8)}`;
+              } else if (value.length > 2) {
+                input.value = `${value.slice(0, 2)}/${value.slice(2)}`;
+              }
+            }
+          </script>
 
           <!-- Preferred Time -->
           <label for="preferred-time">Preferred Time</label>
@@ -771,13 +786,19 @@
         // Close the modal
         bookingModal.style.display = "none";
       });
-      const dateInput = document.getElementById("date");
-
-dateInput.addEventListener("change", (e) => {
-  const [year, month, day] = e.target.value.split("-");
-  e.target.value = `${month}/${day}/${year}`;
-});
-
+      function formatDate(input) {
+        // Auto-format the date while typing
+        let value = input.value.replace(/[^0-9]/g, ""); // Remove non-numeric chars
+        if (value.length > 4) {
+          input.value = `${value.slice(0, 2)}/${value.slice(
+            2,
+            4
+          )}/${value.slice(4, 8)}`;
+        } else if (value.length > 2) {
+          input.value = `${value.slice(0, 2)}/${value.slice(2)}`;
+        }
+      }
     </script>
   </body>
 </html>
+
