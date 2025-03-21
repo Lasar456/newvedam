@@ -691,11 +691,14 @@
           <input id="phone" name="phone" type="tel" required />
 
           <!-- Appointment Date -->
-          <label for="appointment-date">Appointment Date</label>
+          <label for="date">Appointment Date</label>
           <input
-            id="appointment-date"
-            name="appointment-date"
-            type="date"
+            id="date"
+            name="date"
+            type="text"
+            placeholder="mm/dd/yyyy"
+            pattern="\d{2}/\d{2}/\d{4}"
+            inputmode="none"
             required
           />
 
@@ -768,7 +771,13 @@
         // Close the modal
         bookingModal.style.display = "none";
       });
+      const dateInput = document.getElementById("date");
+
+dateInput.addEventListener("change", (e) => {
+  const [year, month, day] = e.target.value.split("-");
+  e.target.value = `${month}/${day}/${year}`;
+});
+
     </script>
   </body>
 </html>
-
