@@ -648,7 +648,7 @@
 
         <form
           class="form-container"
-          action="https://submit-form.com/9nyENusQW"
+          action="https://submit-form.com/Ise0Botla"
           method="POST"
         >
           <!-- ✅ Name Field -->
@@ -701,14 +701,17 @@
             rows="5"
             placeholder="Any special requests..."
           ></textarea>
+          <input type="hidden" name="_captcha" value="false" />
 
           <!-- Submit Button -->
           <button type="submit">Book Appointment</button>
         </form>
+        <div id="form-response" style="display: none; color: green"></div>
       </div>
     </div>
 
     <!-- ✅ JavaScript -->
+    <script src="./script.js"></script>
     <script>
       function toggleMenu() {
         document.getElementById("mobileMenu").classList.toggle("active");
@@ -769,7 +772,10 @@
         // Close the modal
         bookingModal.style.display = "none";
       });
+      
     </script>
+    
   </body>
 </html>
+
 
