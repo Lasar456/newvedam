@@ -394,11 +394,12 @@
         transition: 0.5s ease;
       }
 
-      .modal-content {
+      /* ✅ Modal Content */
+      .booking-content {
         background: #fff;
-        padding: 40px 35px; /* Reduced padding */
+        padding: 40px 35px;
         width: 90%;
-        max-width: 550px;
+        max-width: 600px;
         border-radius: 12px;
         box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
         position: relative;
@@ -406,7 +407,8 @@
         text-align: left;
       }
 
-      .close-modal {
+      /* ✅ Close Button */
+      .close-button {
         position: absolute;
         top: 15px;
         right: 15px;
@@ -418,39 +420,38 @@
         transition: color 0.3s;
       }
 
-      .close-modal:hover {
+      .close-button:hover {
         color: #e05d4e;
       }
 
       /* ✅ Form Styling */
-      .form-container {
+      .vertical-form {
+        display: flex;
         flex-direction: column;
-        gap: 18px; /* Reduced gap between fields */
+        gap: 20px;
       }
 
-      .form-container label {
+      .vertical-form label {
         font-size: 15px;
         color: #333;
         font-weight: bold;
-        margin-bottom: 5px; /* Smaller bottom margin */
-        display: inline-block;
+        margin-bottom: 5px;
       }
 
-      .form-container input,
-      .form-container select,
-      .form-container textarea {
+      .vertical-form input,
+      .vertical-form select,
+      .vertical-form textarea {
         width: 100%;
-        padding: 12px; /* Slightly reduced padding */
+        padding: 12px;
         border: 1px solid #ccc;
         border-radius: 6px;
         font-size: 14px;
         transition: all 0.3s ease;
-        text-align: left;
       }
 
-      .form-container input:focus,
-      .form-container select:focus,
-      .form-container textarea:focus {
+      .vertical-form input:focus,
+      .vertical-form select:focus,
+      .vertical-form textarea:focus {
         border-color: #e05d4e;
         outline: none;
         box-shadow: 0 0 10px rgba(224, 93, 78, 0.5);
@@ -460,7 +461,7 @@
       .date-time-group {
         display: flex;
         justify-content: space-between;
-        gap: 15px; /* Reduced gap */
+        gap: 20px;
       }
 
       .date-time-group div {
@@ -472,12 +473,12 @@
         margin-bottom: 5px;
       }
 
-      /* ✅ Button Styling */
-      .form-container button {
+      /* ✅ Submit Button */
+      .vertical-form button {
         background-color: #e05d4e;
         color: #fff;
-        padding: 12px 25px;
-        font-size: 15px;
+        padding: 14px 30px;
+        font-size: 16px;
         border: none;
         cursor: pointer;
         transition: 0.3s;
@@ -486,11 +487,11 @@
         text-align: center;
       }
 
-      .form-container button:hover {
+      .vertical-form button:hover {
         background-color: #c44d3a;
       }
 
-      /* ✅ Modal Animation */
+      /* ✅ Animation */
       @keyframes slideIn {
         from {
           opacity: 0;
@@ -502,57 +503,88 @@
         }
       }
 
-      /* ✅ Mobile Responsive Design */
+      /* ✅ RESPONSIVE DESIGN */
+
+      /* 🎯 Medium Screens (Tablets) */
+      @media (max-width: 992px) {
+        .booking-content {
+          width: 85%;
+          padding: 35px;
+        }
+
+        .vertical-form {
+          gap: 15px;
+        }
+
+        .vertical-form input,
+        .vertical-form select,
+        .vertical-form textarea {
+          padding: 10px;
+          font-size: 14px;
+        }
+
+        .vertical-form button {
+          font-size: 15px;
+          padding: 12px;
+        }
+
+        .date-time-group {
+          gap: 15px;
+        }
+      }
+
+      /* 🎯 Small Screens (Mobile) */
       @media (max-width: 768px) {
-        .modal-content {
-          width: 95%;
-          padding: 30px; /* Smaller padding on mobile */
+        .booking-content {
+          width: 90%;
+          padding: 30px;
         }
 
         .date-time-group {
           flex-direction: column; /* Stack fields vertically */
-          gap: 10px; /* Reduce gap between fields */
+          gap: 15px;
         }
 
         .date-time-group div {
           width: 100%;
         }
 
-        .form-container input,
-        .form-container select,
-        .form-container textarea {
-          padding: 10px; /* Smaller padding for mobile */
+        .vertical-form input,
+        .vertical-form select,
+        .vertical-form textarea {
+          padding: 10px;
           font-size: 14px;
         }
 
-        .form-container label {
-          font-size: 14px; /* Smaller label font */
+        .vertical-form label {
+          font-size: 14px;
         }
 
-        .form-container button {
+        .vertical-form button {
           font-size: 14px;
           padding: 12px;
         }
       }
 
-      /* ✅ Ultra Small Screens */
+      /* 🎯 Ultra Small Screens (Phones) */
       @media (max-width: 480px) {
-        .modal-content {
+        .booking-content {
+          width: 95%;
           padding: 25px;
         }
 
-        .form-container label {
+        .vertical-form label {
           font-size: 13px;
         }
 
-        .form-container input,
-        .form-container select,
-        .form-container textarea {
+        .vertical-form input,
+        .vertical-form select,
+        .vertical-form textarea {
           font-size: 13px;
           padding: 10px;
         }
 
-        .form-container button {
+        .vertical-form button {
           font-size: 13px;
           padding: 10px;
         }
@@ -639,88 +671,52 @@
 
       <a href="#" class="book-btn">BOOK NOW</a>
     </div>
-    <!-- ✅ Booking Modal -->
+    <div id="bookingModal" class="booking-modal">
+      <div class="booking-content">
+        <span class="close-button" id="closeModalBtn">&times;</span>
+        <h2>Book Appointment</h2>
 
-    <div class="booking-modal" id="bookingModal">
-      <div class="modal-content">
-        <button class="close-modal" onclick="closeBookingForm()">✖</button>
-        <h2>Book Your Spa Appointment</h2>
-
+        <!-- Updated Form using submit-form.com -->
         <form
-          class="form-container"
+          class="vertical-form"
           action="https://submit-form.com/Ise0Botla"
           method="POST"
         >
-          <!-- ✅ Name Field -->
-          <label for="name">Name</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            placeholder="Enter your name"
-            required
-          />
+          <!-- Full Name -->
+          <label for="full-name">Full Name</label>
+          <input id="full-name" name="full-name" type="text" required />
 
           <!-- Phone Number -->
           <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" required />
+
+          <!-- Appointment Date -->
+          <label for="appointment-date">Appointment Date</label>
           <input
-            id="phone"
-            name="phone"
-            type="tel"
-            placeholder="Enter your phone number"
+            id="appointment-date"
+            name="appointment-date"
+            type="date"
             required
           />
 
-          <!-- Date & Time Group -->
-          <div class="date-time-group">
-            <div>
-              <label for="date">Appointment Date</label>
-              <input id="date" name="date" type="date" required />
-            </div>
-
-            <div>
-              <label for="time">Appointment Time</label>
-              <input id="time" name="time" type="time" required />
-            </div>
-          </div>
-
-          <!-- Spa Service -->
-          <label for="service">Select Service</label>
-          <select id="service" name="service" required>
-            <option value="Massage">Massage</option>
-            <option value="Facial">Facial</option>
-            <option value="Body Scrub">Body Scrub</option>
-            <option value="Manicure & Pedicure">Manicure & Pedicure</option>
+          <!-- Preferred Time -->
+          <label for="preferred-time">Preferred Time</label>
+          <select id="preferred-time" name="preferred-time" required>
+            <option value="">Select Time</option>
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
           </select>
 
-          <!-- Message -->
-          <label for="message">Additional Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            placeholder="Any special requests..."
-          ></textarea>
-          <input type="hidden" name="_captcha" value="false" />
-
           <!-- Submit Button -->
-          <button type="submit">Book Appointment</button>
+          <button type="submit">Complete Booking</button>
         </form>
-        <div id="form-response" style="display: none; color: green"></div>
       </div>
     </div>
 
     <!-- ✅ JavaScript -->
-    <script src="./script.js"></script>
-    <script>
-      function toggleMenu() {
-        document.getElementById("mobileMenu").classList.toggle("active");
-      }
-
-      function closeMenu() {
-        document.getElementById("mobileMenu").classList.remove("active");
-      }
-    </script>
     <script>
       // ✅ Mobile Menu Toggle
       function toggleMenu() {
@@ -734,7 +730,7 @@
       // ✅ Booking Modal Functionality
       const bookingModal = document.getElementById("bookingModal");
       const bookButtons = document.querySelectorAll(".book-btn");
-      const closeButtons = document.querySelectorAll(".close-modal");
+      const closeButtons = document.querySelectorAll(".close-button"); // ✅ Fixed selector
 
       // Open Booking Modal
       bookButtons.forEach((btn) => {
@@ -772,10 +768,7 @@
         // Close the modal
         bookingModal.style.display = "none";
       });
-      
     </script>
-    
   </body>
 </html>
-
 
