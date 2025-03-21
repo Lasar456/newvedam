@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Header with Left Hamburger</title>
+
+    <!-- ✅ Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      /* ✅ Base Styling */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #ffffff;
+        line-height: 1.6;
+      }
+
+      /* ✅ Header Styling */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 60px;
+        background: #fdf9f9;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        z-index: 999;
+      }
+
+      /* ✅ Left Section: Logo + Contact Info */
+      .left-section {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .logo img {
+        height: 65px;
+        width: auto;
+        transition: 0.3s;
+      }
+
+      .contact-info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .contact-info a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        transition: 0.3s;
+      }
+
+      .contact-info a:hover {
+        color: #e05d4e;
+      }
+
+      .contact-info .icon {
+        width: 30px;
+        height: 30px;
+        background-color: #e05d4e;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 15px;
+        transition: 0.3s;
+        margin-right: 10px;
+      }
+
+      .contact-info .icon:hover {
+        background-color: #c44d3a;
+      }
+
+      /* ✅ Middle Section: Navigation Menu */
+      .nav-menu {
+        display: flex;
+        gap: 35px;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #333;
+        font-size: 18px;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .nav-menu a:hover {
+        color: #e05d4e;
+      }
+
+      /* ✅ Right Section: Social Icons + "BOOK NOW" Button */
+      .right-section {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icons a {
+        color: #333;
+        font-size: 22px;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+
+      .social-icons a:hover {
+        color: #e05d4e;
+      }
+
+      .book-btn {
+        background-color: #e29085;
+        color: #fff;
+        padding: 12px 25px;
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .book-btn:hover {
+        background-color: #c87467;
+      }
+
+      /* ✅ Hamburger Menu Styling */
+      .hamburger {
+        display: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: #333;
+        transition: 0.3s;
+      }
+
+      .hamburger:hover {
+        color: #555;
+      }
+
+      /* ✅ Drawer-style Mobile Menu */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 300px;
+        height: 100%;
+        background: #fff;
+        box-shadow: 10px 0 20px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        overflow-y: auto;
+        transition: all 0.5s ease;
+        padding: 20px;
+      }
+
+      .mobile-menu.active {
+        left: 0;
+      }
+
+      .mobile-menu a {
+        display: block;
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        padding: 15px 0;
+        transition: 0.3s;
+        text-transform: uppercase;
+      }
+
+      .mobile-menu a:hover {
+        color: #e05d4e;
+      }
+
+      .mobile-contact,
+      .mobile-social {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .mobile-menu .book-btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        margin-top: 20px;
+      }
+      /* ✅ Close Button Styling */
+      .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        font-size: 24px;
+        color: #333;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .close-btn:hover {
+        color: #e05d4e;
+      }
+
+      /* ✅ Mobile Responsive */
+      @media (max-width: 1300px) {
+        .header {
+          padding: 15px 40px;
+        }
+
+        .logo img {
+          height: 55px;
+        }
+
+        .contact-info a {
+          font-size: 14px;
+        }
+
+        .contact-info .icon {
+          width: 25px;
+          height: 25px;
+          font-size: 13px;
+        }
+
+        .nav-menu a {
+          font-size: 16px;
+        }
+
+        .book-btn {
+          padding: 10px 20px;
+          font-size: 14px;
+        }
+
+        .social-icons a {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .header {
+          padding: 15px 30px;
+        }
+
+        .nav-menu {
+          display: none;
+        }
+
+        .hamburger {
+          display: block;
+          position: absolute;
+          right: 30px;
+          top: 25px;
+        }
+
+        .right-section,
+        .contact-info {
+          display: none;
+        }
+
+        .logo img {
+          height: 50px;
+        }
+
+        .contact-info a {
+          font-size: 12px;
+        }
+
+        .contact-info .icon {
+          width: 22px;
+          height: 22px;
+          font-size: 12px;
+        }
+
+        .nav-menu a {
+          font-size: 14px;
+          gap: 20px;
+        }
+
+        .book-btn {
+          padding: 8px 18px;
+          font-size: 12px;
+        }
+
+        .social-icons a {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header {
+          flex-direction: column;
+          align-items: center;
+          padding: 20px;
+        }
+
+        .left-section {
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        .logo img {
+          height: 50px;
+        }
+
+        .book-btn {
+          width: 100%;
+        }
+      }
+      .contact-info a span {
+        position: relative;
+        display: inline-block;
+        transition: color 0.3s;
+      }
+
+      .contact-info a span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px; /* Positioning the line below the text */
+        width: 0;
+        height: 2px;
+        background: #e05d4e; /* Line color */
+        transition: width 0.4s ease;
+      }
+
+      .contact-info a:hover span::after {
+        width: 100%;
+      }
+      .mobile-contact a,
+      .mobile-social a {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Spacing between icon and text */
+      }
+
+      .mobile-contact a i,
+      .mobile-social a i {
+        min-width: 30px; /* Ensures consistent icon width */
+        text-align: center;
+      }
+      .mobile-contact a span {
+        white-space: nowrap; /* Prevents text wrapping */
+        overflow: hidden; /* Hides overflow */
+        text-overflow: ellipsis; /* Adds "..." if text overflows */
+        max-width: 200px; /* Adjust width to fit content */
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <!-- ✅ Left Section: Logo + Contact Info -->
+      <div class="left-section">
+        <div class="logo">
+          <img src="./vedam.png" alt="Logo" />
+        </div>
+
+        <div class="contact-info">
+          <!-- ✅ Desktop -->
+          <a href="mailto:info@coastalvedam.com">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <span>info@coastalvedam.com</span>
+          </a>
+          <a href="tel:9589044093">
+            <div class="icon"><i class="fas fa-phone"></i></div>
+            <span>9589044093</span>
+          </a>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+      </nav>
+
+      <div class="right-section">
+        <div class="social-icons">
+          <a href="https://www.facebook.com/vedam.spa/"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a href="https://www.instagram.com/vedamspa/"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </div>
+        <a href="#" class="book-btn">BOOK NOW</a>
+      </div>
+
+      <!-- ✅ Hamburger Button -->
+      <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </header>
+
+    <!-- ✅ Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <!-- ✅ Close button -->
+      <button class="close-btn" onclick="closeMenu()">✖</button>
+
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+
+      <!-- ✅ Mobile Slide Menu -->
+      <div class="mobile-contact">
+        <a href="mailto:info@coastalvedam.com">
+          <i class="fas fa-envelope"></i>
+          <span>info@coastalvedam.com</span>
+        </a>
+        <a href="tel:9589044093">
+          <i class="fas fa-phone"></i>
+          <span>9589044093</span>
+        </a>
+      </div>
+
+      <div class="mobile-social">
+        <a href="https://www.facebook.com/vedam.spa/"
+          ><i class="fa-brands fa-facebook"></i> Facebook</a
+        >
+        <a href="https://www.instagram.com/vedamspa/"
+          ><i class="fab fa-instagram"></i> Instagram</a
+        >
+      </div>
+
+      <a href="#" class="book-btn">BOOK NOW</a>
+    </div>
+    <div></div>
+
+    <!-- ✅ JavaScript -->
+    <script>
+      function toggleMenu() {
+        document.getElementById("mobileMenu").classList.toggle("active");
+      }
+
+      function closeMenu() {
+        document.getElementById("mobileMenu").classList.remove("active");
+      }
+    </script>
+  </body>
+</html>
